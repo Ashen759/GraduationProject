@@ -50,6 +50,7 @@ namespace CodeFirstSystem1.Controllers
         [HttpPost]
         public ActionResult Register(string AdminName,string AdminPwd,string checkPwd)
         {
+            //注册
             if (AdminName != "" && AdminPwd != "" && checkPwd != "")
             {
                 if (AdminPwd == checkPwd)
