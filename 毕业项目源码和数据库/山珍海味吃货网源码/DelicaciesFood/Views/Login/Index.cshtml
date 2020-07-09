@@ -1,0 +1,49 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<HEAD>
+    <META content="IE=11.0000" http-equiv="X-UA-Compatible">
+
+    <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <link href="~/Content/login.css" rel="stylesheet" />
+    <script src="~/Scripts/login.js"></script>
+
+
+    <META name="GENERATOR" content="MSHTML 11.00.9600.17496">
+</HEAD>
+
+<BODY>
+    <form id="login_form" action="Index" method="post">
+        <DIV class="top_div"></DIV>
+        <DIV class="login_box">
+            <DIV class="cat">
+                <DIV class="tou"></DIV>
+                <DIV class="initial_left_hand" id="left_hand"></DIV>
+                <DIV class="initial_right_hand" id="right_hand"></DIV>
+            </DIV>
+            <P class="username">
+                <SPAN class="u_logo"></SPAN>
+                <INPUT class="ipt" type="text" placeholder="请输入用户名" name="UserName" value="">
+            </P>
+            <P class="userpwd">
+                <SPAN class="p_logo"></SPAN>
+                <INPUT class="ipt" id="password" type="password" placeholder="请输入密码" name="UserPwd" value="">
+            </P>
+            <DIV class="under_con">
+                <P class="cutline">
+                    <SPAN style="float: left;">
+                    </SPAN>
+                    <SPAN style="float: right;">
+                        <A class="btn btn-default" style="color: rgb(204, 204, 204); margin-right: 10px;" href="/Login/Register">注册</A>
+                        <input style="background: #e3722e; padding: 7px 10px; border-radius: 4px; border: 1px solid #e3722e; border-image: none; color: rgb(255, 255, 255); font-weight: bold;" type="submit" value="登录" />
+                    </SPAN>
+                </P>
+            </DIV>
+        </DIV>
+    </form>
+</BODY>

@@ -1,0 +1,321 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="FoodieWebsiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdminName" Type="nvarchar" MaxLength="20" />
+          <Property Name="AdminPwd" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="DietNous">
+          <Key>
+            <PropertyRef Name="NousID" />
+          </Key>
+          <Property Name="NousID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NousTitle" Type="nvarchar" MaxLength="100" />
+          <Property Name="NousPic" Type="nvarchar" MaxLength="50" />
+          <Property Name="NousDetails" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="FoodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FoodName" Type="nvarchar" MaxLength="50" />
+          <Property Name="FoodType" Type="int" />
+          <Property Name="FoodPicture" Type="nvarchar" MaxLength="4000" />
+          <Property Name="FoodDifficulty" Type="int" />
+          <Property Name="CompletionTime" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Flavor" Type="nvarchar" MaxLength="50" />
+          <Property Name="CookingUtensils" Type="nvarchar" MaxLength="50" />
+          <Property Name="CookingStyle" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mainmaterial" Type="nvarchar" MaxLength="200" />
+          <Property Name="Accessories" Type="nvarchar" MaxLength="200" />
+          <Property Name="FlowChart" Type="nvarchar" MaxLength="4000" />
+          <Property Name="ThumbNumber" Type="int" />
+          <Property Name="Foodissuer" Type="int" />
+        </EntityType>
+        <EntityType Name="RecipeType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TEName" Type="nvarchar" MaxLength="50" />
+          <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PID" Type="int" />
+        </EntityType>
+        <EntityType Name="Sfav">
+          <Key>
+            <PropertyRef Name="SfavID" />
+          </Key>
+          <Property Name="SfavID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SfavName" Type="nvarchar" MaxLength="50" />
+          <Property Name="SfavPic" Type="nvarchar" MaxLength="50" />
+          <Property Name="SfavExplain" Type="nvarchar" MaxLength="200" />
+          <Property Name="MatureSeason" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="20" />
+          <Property Name="UserPwd" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Food_RecipeType1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Food" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="Foodissuer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeType_RecipeType">
+          <End Role="RecipeType" Type="Self.RecipeType" Multiplicity="0..1" />
+          <End Role="RecipeType1" Type="Self.RecipeType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecipeType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="RecipeType1">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FoodieWebsiteModelStoreContainer">
+          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DietNous" EntityType="Self.DietNous" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecipeType" EntityType="Self.RecipeType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sfav" EntityType="Self.Sfav" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Food_RecipeType1" Association="Self.FK_Food_RecipeType1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Food" EntitySet="Food" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeType_RecipeType" Association="Self.FK_RecipeType_RecipeType">
+            <End Role="RecipeType" EntitySet="RecipeType" />
+            <End Role="RecipeType1" EntitySet="RecipeType" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="FoodieWebsiteModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Admin">
+          <Key>
+            <PropertyRef Name="AdminID" />
+          </Key>
+          <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdminName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="AdminPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="DietNous">
+          <Key>
+            <PropertyRef Name="NousID" />
+          </Key>
+          <Property Name="NousID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NousTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NousPic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NousDetails" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Food">
+          <Key>
+            <PropertyRef Name="FoodID" />
+          </Key>
+          <Property Name="FoodID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FoodName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="FoodType" Type="Int32" />
+          <Property Name="FoodPicture" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="FoodDifficulty" Type="Int32" />
+          <Property Name="CompletionTime" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Flavor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CookingUtensils" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CookingStyle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mainmaterial" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Accessories" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="FlowChart" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="ThumbNumber" Type="Int32" />
+          <Property Name="Foodissuer" Type="Int32" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Food_RecipeType1" FromRole="Food" ToRole="User" />
+        </EntityType>
+        <EntityType Name="RecipeType">
+          <Key>
+            <PropertyRef Name="TypeID" />
+          </Key>
+          <Property Name="TypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TEName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="TypeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PID" Type="Int32" />
+          <NavigationProperty Name="RecipeType1" Relationship="Self.FK_RecipeType_RecipeType" FromRole="RecipeType" ToRole="RecipeType1" />
+          <NavigationProperty Name="RecipeType2" Relationship="Self.FK_RecipeType_RecipeType" FromRole="RecipeType1" ToRole="RecipeType" />
+        </EntityType>
+        <EntityType Name="Sfav">
+          <Key>
+            <PropertyRef Name="SfavID" />
+          </Key>
+          <Property Name="SfavID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SfavName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SfavPic" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SfavExplain" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="MatureSeason" Type="Int32" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="UserPwd" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Food" Relationship="Self.FK_Food_RecipeType1" FromRole="User" ToRole="Food" />
+        </EntityType>
+        <Association Name="FK_Food_RecipeType1">
+          <End Role="User" Type="Self.User" Multiplicity="0..1" />
+          <End Role="Food" Type="Self.Food" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="Food">
+              <PropertyRef Name="Foodissuer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecipeType_RecipeType">
+          <End Role="RecipeType" Type="Self.RecipeType" Multiplicity="0..1" />
+          <End Role="RecipeType1" Type="Self.RecipeType" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RecipeType">
+              <PropertyRef Name="TypeID" />
+            </Principal>
+            <Dependent Role="RecipeType1">
+              <PropertyRef Name="PID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="FoodieWebsiteEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Admin" EntityType="Self.Admin" />
+          <EntitySet Name="DietNous" EntityType="Self.DietNous" />
+          <EntitySet Name="Food" EntityType="Self.Food" />
+          <EntitySet Name="RecipeType" EntityType="Self.RecipeType" />
+          <EntitySet Name="Sfav" EntityType="Self.Sfav" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <AssociationSet Name="FK_Food_RecipeType1" Association="Self.FK_Food_RecipeType1">
+            <End Role="User" EntitySet="User" />
+            <End Role="Food" EntitySet="Food" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecipeType_RecipeType" Association="Self.FK_RecipeType_RecipeType">
+            <End Role="RecipeType" EntitySet="RecipeType" />
+            <End Role="RecipeType1" EntitySet="RecipeType" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="FoodieWebsiteModelStoreContainer" CdmEntityContainer="FoodieWebsiteEntities">
+          <EntitySetMapping Name="Admin">
+            <EntityTypeMapping TypeName="FoodieWebsiteModel.Admin">
+              <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="AdminID" ColumnName="AdminID" />
+                <ScalarProperty Name="AdminName" ColumnName="AdminName" />
+                <ScalarProperty Name="AdminPwd" ColumnName="AdminPwd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DietNous">
+            <EntityTypeMapping TypeName="FoodieWebsiteModel.DietNous">
+              <MappingFragment StoreEntitySet="DietNous">
+                <ScalarProperty Name="NousID" ColumnName="NousID" />
+                <ScalarProperty Name="NousTitle" ColumnName="NousTitle" />
+                <ScalarProperty Name="NousPic" ColumnName="NousPic" />
+                <ScalarProperty Name="NousDetails" ColumnName="NousDetails" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Food">
+            <EntityTypeMapping TypeName="FoodieWebsiteModel.Food">
+              <MappingFragment StoreEntitySet="Food">
+                <ScalarProperty Name="FoodID" ColumnName="FoodID" />
+                <ScalarProperty Name="FoodName" ColumnName="FoodName" />
+                <ScalarProperty Name="FoodType" ColumnName="FoodType" />
+                <ScalarProperty Name="FoodPicture" ColumnName="FoodPicture" />
+                <ScalarProperty Name="FoodDifficulty" ColumnName="FoodDifficulty" />
+                <ScalarProperty Name="CompletionTime" ColumnName="CompletionTime" />
+                <ScalarProperty Name="Flavor" ColumnName="Flavor" />
+                <ScalarProperty Name="CookingUtensils" ColumnName="CookingUtensils" />
+                <ScalarProperty Name="CookingStyle" ColumnName="CookingStyle" />
+                <ScalarProperty Name="Mainmaterial" ColumnName="Mainmaterial" />
+                <ScalarProperty Name="Accessories" ColumnName="Accessories" />
+                <ScalarProperty Name="FlowChart" ColumnName="FlowChart" />
+                <ScalarProperty Name="ThumbNumber" ColumnName="ThumbNumber" />
+                <ScalarProperty Name="Foodissuer" ColumnName="Foodissuer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecipeType">
+            <EntityTypeMapping TypeName="FoodieWebsiteModel.RecipeType">
+              <MappingFragment StoreEntitySet="RecipeType">
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="TEName" ColumnName="TEName" />
+                <ScalarProperty Name="TypeName" ColumnName="TypeName" />
+                <ScalarProperty Name="PID" ColumnName="PID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sfav">
+            <EntityTypeMapping TypeName="FoodieWebsiteModel.Sfav">
+              <MappingFragment StoreEntitySet="Sfav">
+                <ScalarProperty Name="SfavID" ColumnName="SfavID" />
+                <ScalarProperty Name="SfavName" ColumnName="SfavName" />
+                <ScalarProperty Name="SfavPic" ColumnName="SfavPic" />
+                <ScalarProperty Name="SfavExplain" ColumnName="SfavExplain" />
+                <ScalarProperty Name="MatureSeason" ColumnName="MatureSeason" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="FoodieWebsiteModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPwd" ColumnName="UserPwd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="无" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
