@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="2" virtualPath="/Views/Shared/_PartialHeaderStudent.cshtml" hash="ffffffffc2c533e3" filehash="2aa1b16238a6" flags="110000" assembly="App_Web_v1v202g3" type="ASP._Page_Views_Shared__PartialHeaderStudent_cshtml">
-    <filedeps>
-        <filedep name="/Views/Shared/_PartialHeaderStudent.cshtml" />
-    </filedeps>
-</preserve>

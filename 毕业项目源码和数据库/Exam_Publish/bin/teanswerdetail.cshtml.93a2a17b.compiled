@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="2" virtualPath="/Views/Answers/TeAnswerDetail.cshtml" hash="ffffffffc2c533e3" filehash="ffffbbceec1f2a8c" flags="110000" assembly="App_Web_j224exxm" type="ASP._Page_Views_Answers_TeAnswerDetail_cshtml">
-    <filedeps>
-        <filedep name="/Views/Answers/TeAnswerDetail.cshtml" />
-    </filedeps>
-</preserve>

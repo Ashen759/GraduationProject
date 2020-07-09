@@ -1,6 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<preserve resultType="2" virtualPath="/Views/Papers/Delete.cshtml" hash="ffffffffc2c533e3" filehash="20bcdcac008f" flags="110000" assembly="App_Web_1vunzbhc" type="ASP._Page_Views_Papers_Delete_cshtml">
-    <filedeps>
-        <filedep name="/Views/Papers/Delete.cshtml" />
-    </filedeps>
-</preserve>
