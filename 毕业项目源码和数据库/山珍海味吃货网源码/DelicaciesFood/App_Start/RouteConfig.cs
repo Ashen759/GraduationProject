@@ -16,7 +16,8 @@ namespace DelicaciesFood
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { action = "Index", id = UrlParameter.Optional }
+                //defaults: new { action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "FoodWeb", action = "Index", id = UrlParameter.Optional }
             );
         }
     }
