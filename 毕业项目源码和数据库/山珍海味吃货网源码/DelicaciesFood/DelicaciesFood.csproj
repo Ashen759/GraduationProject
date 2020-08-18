@@ -122,7 +122,6 @@
     <Content Include="Content\CantoneseCuisine.css" />
     <Content Include="Content\DietNous.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\foods.css" />
     <Content Include="Content\Health.css" />
     <Content Include="Content\login.css" />
     <Content Include="Content\MyZone.css" />

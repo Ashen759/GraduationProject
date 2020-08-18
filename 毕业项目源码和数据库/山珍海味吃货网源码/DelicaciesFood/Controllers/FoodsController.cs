@@ -20,78 +20,9 @@ namespace DelicaciesFood.Controllers
             var typeList = db.RecipeType.ToList();
             ViewBag.typeList = typeList;
 
-            //粤菜
-            var CantoneseCuisine = db.Food.Where(p => p.FoodType == 2).ToList();
-            ViewBag.CantoneseCuisine = CantoneseCuisine;
-            //川菜
-            var SichuanCuisine = db.Food.Where(p => p.FoodType == 3).ToList();
-            ViewBag.SichuanCuisine = SichuanCuisine;
-            //湘菜
-            var HunanCuisine = db.Food.Where(p => p.FoodType == 4).ToList();
-            ViewBag.HunanCuisine = HunanCuisine;
-            //鲁菜
-            var ShandongCuisine = db.Food.Where(p => p.FoodType == 5).ToList();
-            ViewBag.ShandongCuisine = ShandongCuisine;
-            //浙菜
-            var ZhejiangCuisine = db.Food.Where(p => p.FoodType == 6).ToList();
-            ViewBag.ZhejiangCuisine = ZhejiangCuisine;
-            //新疆菜
-            var XinjiangCuisine = db.Food.Where(p => p.FoodType == 7).ToList();
-            ViewBag.XinjiangCuisine = XinjiangCuisine;
-            //台湾美食
-            var TaiwanCuisine = db.Food.Where(p => p.FoodType == 8).ToList();
-            ViewBag.TaiwanCuisine = TaiwanCuisine;
-            //香港美食
-            var HongKongCuisine = db.Food.Where(p => p.FoodType == 9).ToList();
-            ViewBag.HongKongCuisine = HongKongCuisine;
-            //澳门美食
-            var MacaoCuisine = db.Food.Where(p => p.FoodType == 10).ToList();
-            ViewBag.MacaoCuisine = MacaoCuisine;
-
-            //日本料理
-            var JapaneseCuisine = db.Food.Where(p => p.FoodType == 12).ToList();
-            ViewBag.JapaneseCuisine = JapaneseCuisine;
-            //韩国料理
-            var KoreanCuisine = db.Food.Where(p => p.FoodType == 13).ToList();
-            ViewBag.KoreanCuisine = KoreanCuisine;
-            //泰国菜
-            var ThailandCuisine = db.Food.Where(p => p.FoodType == 14).ToList();
-            ViewBag.ThailandCuisine = ThailandCuisine;
-            //越南菜
-            var VietnameseCuisine = db.Food.Where(p => p.FoodType == 15).ToList();
-            ViewBag.VietnameseCuisine = VietnameseCuisine;
-            //法国菜
-            var FrenchCuisine = db.Food.Where(p => p.FoodType == 16).ToList();
-            ViewBag.FrenchCuisine = FrenchCuisine;
-            //意大利菜
-            var ItalyCuisine = db.Food.Where(p => p.FoodType == 17).ToList();
-            ViewBag.ItalyCuisine = ItalyCuisine;
-
-
-            //蛋糕
-            var Cake = db.Food.Where(p => p.FoodType == 19).ToList();
-            ViewBag.Cake = Cake;
-            //面包
-            var bread = db.Food.Where(p => p.FoodType == 20).ToList();
-            ViewBag.bread = bread;
-            //马卡龙
-            var Macaroon = db.Food.Where(p => p.FoodType == 21).ToList();
-            ViewBag.Macaroon = Macaroon;
-            //法棍
-            var Baguette = db.Food.Where(p => p.FoodType == 22).ToList();
-            ViewBag.Baguette = Baguette;
-            //曲奇
-            var Cookies = db.Food.Where(p => p.FoodType == 23).ToList();
-            ViewBag.Cookies = Cookies;
-
-
-            //披萨
-            var Pizza = db.Food.Where(p => p.FoodType == 25).ToList();
-            ViewBag.Pizza = Pizza;
-            //油炸物
-            var FriedFood = db.Food.Where(p => p.FoodType == 26).ToList();
-            ViewBag.FriedFood = FriedFood;
-
+            //菜品2
+            var foodsList = db.Food.ToList();
+            ViewBag.foodsList = foodsList;
 
 
             List<Food> answers = db.Food.OrderByDescending(p => p.FoodID).ToList();

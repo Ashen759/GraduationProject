@@ -275,8 +275,8 @@ E:\大三\毕业项目\毕业项目源码和数据库\山珍海味吃货网源�
 E:\大三\毕业项目\毕业项目源码和数据库\山珍海味吃货网源码\DelicaciesFood\bin\zh-Hans\System.Web.WebPages.resources.dll
 E:\大三\毕业项目\毕业项目源码和数据库\山珍海味吃货网源码\DelicaciesFood\bin\zh-Hans\System.Web.WebPages.Deployment.resources.dll
 E:\大三\毕业项目\毕业项目源码和数据库\山珍海味吃货网源码\DelicaciesFood\bin\zh-Hans\System.Web.WebPages.Razor.resources.dll
-E:\大三\毕业项目\毕业项目源码和数据库\山珍海味吃货网源码\DelicaciesFood\obj\Debug\DelicaciesFood.csprojAssemblyReference.cache
 E:\大三\毕业项目\毕业项目源码和数据库\山珍海味吃货网源码\DelicaciesFood\obj\Debug\DelicaciesFood.csproj.CoreCompileInputs.cache
 E:\大三\毕业项目\毕业项目源码和数据库\山珍海味吃货网源码\DelicaciesFood\obj\Debug\DelicaciesFood.csproj.CopyComplete
 E:\大三\毕业项目\毕业项目源码和数据库\山珍海味吃货网源码\DelicaciesFood\obj\Debug\DelicaciesFood.dll
 E:\大三\毕业项目\毕业项目源码和数据库\山珍海味吃货网源码\DelicaciesFood\obj\Debug\DelicaciesFood.pdb
+E:\大三\毕业项目\毕业项目源码和数据库\山珍海味吃货网源码\DelicaciesFood\obj\Debug\DelicaciesFood.csprojAssemblyReference.cache
