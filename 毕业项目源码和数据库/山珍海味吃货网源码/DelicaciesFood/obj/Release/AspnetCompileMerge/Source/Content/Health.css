@@ -1,0 +1,60 @@
+﻿.tab_content{
+    width:80%;
+    margin:0px auto;
+    display:flex;
+    justify-content:space-between;
+}
+.left ul li {
+    margin-top: 35px;
+}
+.left ul li a{
+    font-size:24px;
+    color:black;
+}
+.left ul li p{
+    max-width: 210px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.left ul li a:hover{
+    color:orangered;
+    font-weight:bold;
+    text-decoration:underline;
+}
+
+.health_rank{
+    margin-top:45px
+}
+.health_rank span{
+    font-size:30px;
+    margin-left:140px;
+    color:orangered;
+}
+.health_rank hr{
+    color:orangered;
+    width:104px;
+    margin-right:6px;
+    margin-top:5px;
+    margin-bottom:7px;
+}
+
+.Erect_list {
+    width: 260px;
+    border: 1px solid lightgrey;
+}
+.Erect_lis ul{
+    margin:10px auto;
+}
+.Erect_list li {
+    border-bottom:1px solid lightgrey;
+    text-align:center;
+    margin:10px auto;
+    width: 250px;
+    height: 40px;
+    line-height: 40px;
+}
+.Erect_list li a{
+    font-size:18px;
+    color:black
+}

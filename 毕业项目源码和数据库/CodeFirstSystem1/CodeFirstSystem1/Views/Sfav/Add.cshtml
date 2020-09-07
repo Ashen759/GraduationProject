@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+@using CodeFirstSystem1.Models;
+@model List<Sfav>
+
+<h2>新增时蔬</h2>
+
+<div class="form-horizontal">
+    <form id="form1" class="General_content_form" action="/Sfav/Add" method="post" enctype="multipart/form-data">
+        <p>
+            时蔬名称：
+            <input type="text" name="SfavName" />
+        </p>
+        <p>
+            时蔬图片：
+            <input type="file" id="SfavPic" name="SfavPic">
+            <span style="color:red">@ViewBag.Message</span>
+        </p>
+        <p>
+            时蔬描述：
+            <textarea name="SfavExplain"></textarea>
+        </p>
+        <p>
+            成熟月份：
+            <select name="MatureSeason">
+                <option value="null">请选择</option>
+                @foreach (var item in ViewBag.monthList as List<SelectListItem>)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </p>
+        <p>
+            <input class="btn btn-success" type="submit" value="提交" />
+            <input class="btn btn-danger" type="button" onclick="back();" value="取消" />
+        </p>
+    </form>
+</div>
+
+<script type="text/javascript">
+    function back() {
+        location.href = "/Sfav/Index";
+    }
+</script>
+
+

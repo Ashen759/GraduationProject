@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@using CodeFirstSystem1.Models;
+@model List<RecipeType>
+
+
+<h2>大类</h2>
+<a href="/Type/Add" class="btn btn-primary">增加</a>
+<table class="table table-bordered">
+    <tr>
+        <td>编号</td>
+        <td>类别名字</td>
+        <td>类别英文</td>
+        <td>详情</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.TypeID</td>
+            <td>@item.TypeName</td>
+            <td>@item.TEName</td>
+            <td>
+                <a href="/Type/Detail/@item.TypeID" class="btn btn-primary">编辑</a>
+                <a href="/Type/Del/@item.TypeID" onclick="return confirm('确定删除 @item.TypeName 吗？')" class="btn btn-primary">删除</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+
+

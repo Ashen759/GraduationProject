@@ -1,0 +1,767 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using DelicaciesFood.Model
+@{
+    List<RecipeType> types = ViewBag.typeList;
+    List<Food> CantoneseCuisine = ViewBag.CantoneseCuisine;
+    List<Food> SichuanCuisine = ViewBag.SichuanCuisine;
+    List<Food> HunanCuisine = ViewBag.HunanCuisine;
+    List<Food> ShandongCuisine = ViewBag.ShandongCuisine;
+    List<Food> ZhejiangCuisine = ViewBag.ZhejiangCuisine;
+    List<Food> XinjiangCuisine = ViewBag.XinjiangCuisine;
+    List<Food> TaiwanCuisine = ViewBag.TaiwanCuisine;
+    List<Food> HongKongCuisine = ViewBag.HongKongCuisine;
+    List<Food> MacaoCuisine = ViewBag.MacaoCuisine;
+    List<Food> JapaneseCuisine = ViewBag.JapaneseCuisine;
+    List<Food> KoreanCuisine = ViewBag.KoreanCuisine;
+    List<Food> ThailandCuisine = ViewBag.ThailandCuisine;
+    List<Food> VietnameseCuisine = ViewBag.VietnameseCuisine;
+    List<Food> FrenchCuisine = ViewBag.FrenchCuisine;
+    List<Food> ItalyCuisine = ViewBag.ItalyCuisine;
+    List<Food> Cake = ViewBag.Cake;
+    List<Food> bread = ViewBag.bread;
+    List<Food> Macaroon = ViewBag.Macaroon;
+    List<Food> Baguette = ViewBag.Baguette;
+    List<Food> Cookies = ViewBag.Cookies;
+    List<Food> Pizza = ViewBag.Pizza;
+    List<Food> FriedFood = ViewBag.FriedFood;
+    int ranknum = 1;
+}
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<Food>
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>菜品大全</title>
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="templatemo">
+        <meta charset="UTF-8">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>*@
+
+    <!-- CSS Bootstrap & Custom -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/templatemo-misc.css" rel="stylesheet" />
+    <link href="~/Content/templatemo-main.css" rel="stylesheet" />
+    <link href="~/Content/MyZone.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/scripts/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/foods.css" rel="stylesheet" />
+
+    <!--[if lt IE 8]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+            <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt="" /></a>
+        </div>
+    <![endif]-->
+</head>
+<body>
+    <div>
+        <div class="top-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div>
+                            <span><a style="font-size:24px;font-weight:bold;color:white" href="/FoodWeb/Index">山珍海味吃货网</a></span>
+                        </div> <!-- /.left-header -->
+                    </div> <!-- /.col-md-6 -->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="right-header text-right">
+                            <ul class="social-icons">
+                                <li><span>欢迎你，@User.Identity.Name</span></li>
+                                <li><a href="/MyZone/Index" title="我的" class="fa fa-user" aria-hidden="true"></a></li>
+                                <li><a href="#" title="消息" class="fa fa-bell-o" aria-hidden="true"></a></li>
+                                <li><a href="/Login/TLogout" title="退出" class="fa fa-power-off" aria-hidden="true"></a></li>
+                            </ul>
+                        </div> <!-- /.left-header -->
+                    </div> <!-- /.col-md-6 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.top-header -->
+        @*标签页*@
+        <div class="tab_content">
+            <div class="allfood">
+                <ul id="myTab" class="nav nav-tabs">
+                    @foreach (var item in types)
+                    {
+                        <li class="dropdown">
+                            @if (item.PID == null)
+                            {
+                                <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">
+                                    @item.TypeName
+                                    <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                                    @foreach (var item1 in types)
+                                    {
+                                        if (item.TypeID == item1.PID)
+                                        {
+                                            <li><a href="#@item1.TEName" tabindex="-1" data-toggle="tab">@item1.TypeName</a></li>
+                                        }
+                                    }
+                                </ul>
+                            }
+                        </li>
+                    }
+                </ul>
+                @*点击切换对应菜单*@
+                <div id="myTabContent" class="tab-content">
+                    @*粤菜*@
+                    <div class="tab-pane fade" id="CantoneseCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+
+                            @foreach (var item in CantoneseCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                        <div>
+                            每页 @Model.PageSize 记录，总有 @Model.PageCount 页，当前 @Model.PageNumber 页
+                            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+                        </div>
+                    </div>
+                    @*川菜*@
+                    <div class="tab-pane fade" id="SichuanCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+
+                            @foreach (var item in SichuanCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*湘菜*@
+                    <div class="tab-pane fade" id="HunanCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in HunanCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*鲁菜*@
+                    <div class="tab-pane fade" id="ShandongCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in ShandongCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*浙菜*@
+                    <div class="tab-pane fade" id="ZhejiangCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in ZhejiangCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*新疆菜*@
+                    <div class="tab-pane fade" id="XinjiangCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in XinjiangCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*台湾美食*@
+                    <div class="tab-pane fade" id="TaiwanCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in TaiwanCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*香港美食*@
+                    <div class="tab-pane fade" id="HongKongCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in HongKongCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*澳门美食*@
+                    <div class="tab-pane fade" id="MacaoCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in MacaoCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*日本料理*@
+                    <div class="tab-pane fade" id="JapaneseCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in JapaneseCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*韩国料理*@
+                    <div class="tab-pane fade" id="KoreanCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in KoreanCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*泰国菜*@
+                    <div class="tab-pane fade" id="ThailandCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in ThailandCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*越南菜*@
+                    <div class="tab-pane fade" id="VietnameseCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in VietnameseCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*法国菜*@
+                    <div class="tab-pane fade" id="FrenchCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in FrenchCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*意大利菜*@
+                    <div class="tab-pane fade" id="ItalyCuisine">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in ItalyCuisine)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*蛋糕*@
+                    <div class="tab-pane fade" id="Cake">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in Cake)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*面包*@
+                    <div class="tab-pane fade" id="bread">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in bread)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*马卡龙*@
+                    <div class="tab-pane fade" id="Macaroon">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in Macaroon)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*法棍*@
+                    <div class="tab-pane fade" id="Baguette">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in Baguette)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*曲奇*@
+                    <div class="tab-pane fade" id="Cookies">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in Cookies)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*披萨*@
+                    <div class="tab-pane fade" id="Pizza">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in Pizza)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                    @*油炸物*@
+                    <div class="tab-pane fade" id="FriedFood">
+                        <table class="table table-bordered">
+                            <tr>
+                                <th>编号</th>
+                                <th>美食名称</th>
+                                <th>图片</th>
+                                <th>类别</th>
+                                <th>难度系数</th>
+                                <th>操作</th>
+                            </tr>
+                            @foreach (var item in FriedFood)
+                            {
+                                <tr>
+                                    <td>@ranknum</td>
+                                    <td>@item.FoodName</td>
+                                    <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
+                                    <td>@item.FoodType</td>
+                                    <td>@item.FoodDifficulty</td>
+                                    <td>
+                                        <a class="btn btn-default" href="#">详情</a>
+                                        <a class="btn btn-danger" href="#">❤</a>
+                                    </td>
+                                </tr>
+                                ranknum++;
+                            }
+                        </table>
+                    </div>
+                </div><!-- /tab-content -->
+            </div><!-- /.allfood -->
+        </div><!-- /.tab_content -->
+        @*底部*@
+        <div class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <hr />
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <p>Copyright &copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                    </div> <!-- /.col-md-6 -->
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="go-top">
+                            <a href="#" id="go-top">
+                                <i class="fa fa-angle-up"></i>
+                                返回到顶部
+                            </a>
+                        </div>
+                    </div> <!-- /.col-md-6 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.site-footer -->
+    </div>
+</body>
+</html>
+
+
+
+

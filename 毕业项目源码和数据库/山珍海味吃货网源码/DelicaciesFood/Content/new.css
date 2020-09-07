@@ -1,0 +1,80 @@
+﻿/*菜谱大全板块*/
+.Big_type{
+    font-size:24px;
+}
+.small_type_box {
+    display:inline;
+    margin-left:20px;
+}
+.small_type {
+    font-size: 16px;
+    margin-left: 2em;
+    color: #A52A2A;
+    font-weight:bold;
+}
+.small_type:hover {
+    background-color: #A52A2A;
+    color:white;
+    padding:3px;
+}
+
+/*水果时蔬板块*/
+.fruits_box {
+    border: 1px solid whitesmoke;
+    background-color: lightgoldenrodyellow;
+}
+.fruits_imagebox {
+    width: 260px;
+    height: 180px;
+}
+.fruits_image {
+    width: 210px;
+    height:140px;
+    border-radius: 20px;
+    position:relative;
+    top:10px;
+    left:10px;
+}
+.fruits_details {
+    height: 155px;
+    text-align: center;
+}
+    .fruits_details a {
+        font-size: 20px;
+        font-weight: bold;
+        color: black;
+    }
+    .fruits_details p {
+        width: 210px;
+        margin: 20px auto;
+    }
+
+/*健康饮食小知识板块*/
+.Diet_row {
+    display: flex;
+    justify-content: space-between;
+}
+.Diet_box {
+    height: 182px;
+    display: flex;
+}
+.Diet_box img{
+    width:180px;
+}
+.Diet_box li {
+        height: 60px;
+        line-height: 60px;
+        border-top: 1px solid #AEB6BF;
+        text-align: center;
+}
+.Diet_box li a{
+            font-size:14px;
+            color:white;
+}
+.Diet_box li:hover {
+            background-color:white;
+            font-weight:bold;
+}
+    .Diet_box li:hover a{
+        color:black;
+    }

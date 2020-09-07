@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Detail";
+}
+@using CodeFirstSystem1.Models;
+@model List<DietNous>
+@{
+    DietNous nous = ViewBag.nous;
+}
+
+<h2>详情-@nous.NousTitle</h2>
+
+<div class="form-horizontal">
+    <form id="form1" class="General_content_form" action="/DietNous/Edit" method="post">
+        <p>
+            <input type="hidden" name="NousID" value="@nous.NousID" />
+        </p>
+        <p>
+            标题：
+            <input type="text" name="NousTitle" value="@nous.NousTitle" />
+        </p>
+        <p>
+            详情：
+            <textarea name="NousDetails">@nous.NousDetails</textarea>
+        </p>
+        <p>
+            <input class="btn btn-primary" type="submit" value="提交" />
+            <input class="btn btn-danger" type="button" onclick="back();" value="返回" />
+        </p>
+    </form>
+</div>
+
+
+<script type="text/javascript">
+    function back() {
+        location.href = "/DietNous/Index";
+    }
+</script>
+

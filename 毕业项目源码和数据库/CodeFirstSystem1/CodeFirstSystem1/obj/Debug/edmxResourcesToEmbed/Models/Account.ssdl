@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AccountModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ClassManage">
+    <Key>
+      <PropertyRef Name="ClassID" />
+    </Key>
+    <Property Name="ClassID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ClassName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="PeopleNumber" Type="int" Nullable="false" />
+    <Property Name="MajorID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Major">
+    <Key>
+      <PropertyRef Name="MajorID" />
+    </Key>
+    <Property Name="MajorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MajorName" Type="nvarchar" MaxLength="30" Nullable="false" />
+    <Property Name="SdeptID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Sdept">
+    <Key>
+      <PropertyRef Name="SdeptID" />
+    </Key>
+    <Property Name="SdeptID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SdeptName" Type="nvarchar" MaxLength="30" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_dbo_ClassManage_dbo_Major_MajorID">
+    <End Role="Major" Type="Self.Major" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ClassManage" Type="Self.ClassManage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Major">
+        <PropertyRef Name="MajorID" />
+      </Principal>
+      <Dependent Role="ClassManage">
+        <PropertyRef Name="MajorID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_dbo_Major_dbo_Sdept_SdeptID">
+    <End Role="Sdept" Type="Self.Sdept" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Major" Type="Self.Major" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sdept">
+        <PropertyRef Name="SdeptID" />
+      </Principal>
+      <Dependent Role="Major">
+        <PropertyRef Name="SdeptID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="AccountModelStoreContainer">
+    <EntitySet Name="ClassManage" EntityType="Self.ClassManage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Major" EntityType="Self.Major" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sdept" EntityType="Self.Sdept" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_dbo_ClassManage_dbo_Major_MajorID" Association="Self.FK_dbo_ClassManage_dbo_Major_MajorID">
+      <End Role="Major" EntitySet="Major" />
+      <End Role="ClassManage" EntitySet="ClassManage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_dbo_Major_dbo_Sdept_SdeptID" Association="Self.FK_dbo_Major_dbo_Sdept_SdeptID">
+      <End Role="Sdept" EntitySet="Sdept" />
+      <End Role="Major" EntitySet="Major" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

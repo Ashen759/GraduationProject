@@ -1,0 +1,114 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using DelicaciesFood.Model
+@model List<Food>
+@{
+    List<DietNous> diets = ViewBag.dietList;
+    List<Sfav> sfavs = ViewBag.sfavsList;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>饮食健康小知识</title>
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="templatemo">
+        <meta charset="UTF-8">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>*@
+
+    <!-- CSS Bootstrap & Custom -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/templatemo-misc.css" rel="stylesheet" />
+    <link href="~/Content/templatemo-main.css" rel="stylesheet" />
+    <link href="~/Content/MyZone.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/scripts/bootstrap.js"></script>
+    <link href="~/Content/Health.css" rel="stylesheet" />
+    <!-- Favicons -->
+    <!-- JavaScripts -->
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    @*<script src="~/Scripts/modernizr.js"></script>*@
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>*@
+    <!--[if lt IE 8]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+            <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt="" /></a>
+        </div>
+    <![endif]-->
+</head>
+<body>
+    <div>
+        <div class="top-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div>
+                            <span><a style="font-size:24px;font-weight:bold;color:white" href="/FoodWeb/Index">山珍海味吃货网</a></span>
+                        </div> <!-- /.left-header -->
+                    </div> <!-- /.col-md-6 -->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="right-header text-right">
+                            <ul class="social-icons">
+                                <li><span>欢迎你， @User.Identity.Name </span></li>
+                                <li><a href="/MyZone/Index" title="我的" class="fa fa-user" aria-hidden="true"></a></li>
+                                <li><a href="#" title="消息" class="fa fa-bell-o" aria-hidden="true"></a></li>
+                                <li><a href="/Login/TLogout" title="退出" class="fa fa-power-off" aria-hidden="true"></a></li>
+                            </ul>
+                        </div> <!-- /.left-header -->
+                    </div> <!-- /.col-md-6 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.top-header -->
+        @*内容*@
+    <div class="tab_content">
+        <div class="left">
+            <ul>
+                @foreach (var item in diets)
+                {
+                    <li><a href="/Health/DietNous?nous= @item.NousID">@item.NousTitle</a><p>@item.NousDetails</p></li>
+                }
+             </ul>
+        </div>
+        <div class="right">
+            <div class="health_rank">
+                <span>应季时蔬</span>
+                <hr />
+                <div class="Erect_list">
+                    <ul>
+                        @foreach (var item in sfavs)
+                        {
+                            <li><a href="/Health/DietNous?num= @item.SfavID">@item.SfavName</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!-- /General_content -->
+        @*底部*@
+        <div class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <hr />
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <p>Copyright &copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                    </div> <!-- /.col-md-6 -->
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="go-top">
+                            <a href="#" id="go-top">
+                                <i class="fa fa-angle-up"></i>
+                                返回到顶部
+                            </a>
+                        </div>
+                    </div> <!-- /.col-md-6 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.site-footer -->
+    </div>
+</body>
+</html>
