@@ -57,7 +57,6 @@
                             <ul class="social-icons">
                                 <li><span>欢迎你， @User.Identity.Name </span></li>
                                 <li><a href="/MyZone/Index" title="我的" class="fa fa-user" aria-hidden="true"></a></li>
-                                <li><a href="#" title="消息" class="fa fa-bell-o" aria-hidden="true"></a></li>
                                 <li><a href="/Login/TLogout" title="退出" class="fa fa-power-off" aria-hidden="true"></a></li>
                             </ul>
                         </div> <!-- /.left-header -->
@@ -66,7 +65,7 @@
             </div> <!-- /.container -->
         </div> <!-- /.top-header -->
         @*内容*@
-    <div class="tab_content">
+    <div class="tab_content" style="height:800px">
       
             @foreach (var item in sfavs)
             {

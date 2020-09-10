@@ -9,7 +9,6 @@
     List<Food> foods = ViewBag.foodsList;
     List<Sfav> sfavs = ViewBag.sfavsList;
     List<DietNous> dietnousList = ViewBag.dietnousList;
-    int ranknum = 1;
 }
 
 
@@ -32,19 +31,16 @@
 <div class="flexslider">
     <ul class="slides">
         <li>
-            <img src="~/images/banner01.jpg" alt="">
+            <img src="~/images/刀削面.jpg" width="1600" height="540" alt="">
             <div class="flex-caption">
-                <span></span>
-                <p>Praesent tincidunt neque semper elementum gravida. Donec id euismod magna.<br>Ut erat ligula, malesuada eu quam a, fringilla auctor augue.</p>
+            <h2>刀削面</h2>   
             </div>
         </li>
         <li>
-            <img src="~/images/banner02.jpg" alt="">
+            <img src="~/images/东坡肉.jpg" width="1600" height="540" alt="">
             <div class="flex-caption">
-                <h2>Responsive Mobile</h2>
-                <span></span>
-                <p>Ea, similique, odit id consectetur est beatae quia dicta officiis ipsam itaque in<br>facilis aliquid quas officia voluptatem repellendus repellat!</p>
-            </div>
+                <h2>东坡肉</h2>
+                </div>
         </li>
     </ul>
 </div>
@@ -93,26 +89,24 @@
                 
                 <div class="Diet_img_box">
                     <img id="Diet_img_1"  src="~/images/diet/蛋白粉.jpg" />
-                    <img id="Diet_img_2" style="display:none" src="~/images/diet/蛋白粉（1）.jpg" />
-                    <img id="Diet_img_3" style="display:none" src="~/images/diet/水飞蓟.jpg" />
                 </div>
                 <div>
                     <ul style="width:325px">
-                        <li id="Diet_li_1" style="border:none;"><a href="#">懒人营养早餐怎么办？了解下蛋白粉1</a></li>
-                        <li id="Diet_li_2"><a href="#">懒人营养早餐怎么办？了解下蛋白粉2</a></li>
-                        <li id="Diet_li_3"><a href="#">懒人营养早餐怎么办？了解下蛋白粉3</a></li>
+                        <li id="Diet_li_1" style="border:none;"><a href="/Health/Index">吃火锅时饮料选择有讲究</a></li>
+                        <li id="Diet_li_2"><a href="/Health/Index">如何选择香蕉</a></li>
+                        <li id="Diet_li_3"><a href="/Health/Index">野生解困有养脾胃</a></li>
                     </ul>
                 </div>
             </div> <!-- /.Diet_box -->
             <div class="Diet_box">
                 <div class="">
-                    <img style="width: 180px;" src="~/images/diet/蛋白粉.jpg" />
+                    <img style="width: 180px;" src="~/images/diet/水飞蓟.jpg" />
                 </div>
                 <div>
                     <ul style="width:325px">
-                        <li style="border:none"><a href="#">懒人营养早餐怎么办？了解下蛋白粉1</a></li>
-                        <li><a href="#">懒人营养早餐怎么办？了解下蛋白粉2</a></li>
-                        <li><a href="#">懒人营养早餐怎么办？了解下蛋白粉3</a></li>
+                        <li style="border:none"><a href="/Health/Index">吃火锅喝饮料有讲究</a></li>
+                        <li><a href="/Health/Index">如何选择草莓</a></li>
+                        <li><a href="/Health/Index">橙子和橘子的区别</a></li>
                     </ul>
                 </div>
             </div> <!-- /.Diet_box -->
@@ -147,46 +141,6 @@
         <h6 style="text-align: center; font-size: 21px; margin-top: 10px;">当前月份：@ViewBag.time</h6>
     </div> <!-- /.container -->
 </div> <!-- /#about -->
-@*排行榜*@
-<div id="contact" class="section-cotent">
-    <div>
-        <div class="container">
-            <div class="title-section text-center">
-                <h2>排行榜</h2>
-                <span></span>
-            </div> <!-- /.title-section -->
-
-            <table class="table table-bordered">
-                <tr>
-                    <th>排行</th>
-                    <th>美食名称</th>
-                    <th>图片</th>
-                    <th>类别</th>
-                    <th>难度系数</th>
-                    <th>点赞数</th>
-                    <th>操作</th>
-                </tr>
-
-                @foreach (var item in foods)
-                {
-                    <tr>
-                        <td>@ranknum</td>
-                        <td>@item.FoodName</td>
-                        <td><img width="130" height="80" src="~/images/food/@item.FoodPicture" /></td>
-                        <td>@item.FoodType</td>
-                        <td>@item.FoodDifficulty</td>
-                        <td>@item.ThumbNumber</td>
-                        <td>
-                            <a class="btn btn-default" href="#">详情</a>
-                            <a class="btn btn-danger" href="#">❤</a>
-                        </td>
-                    </tr>
-                    ranknum++;
-                }
-            </table>
-        </div>
-    </div> <!-- /.container -->
-</div> <!-- /#main-header -->
 
 @*@section scripts{
     <script type="text/javascript">

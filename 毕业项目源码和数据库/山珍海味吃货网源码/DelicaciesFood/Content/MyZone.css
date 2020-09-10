@@ -1,6 +1,6 @@
 ﻿.tab_content{
     width:100%;
-    height:720px;
+    height:800px;
 }
 
 #option_box {
@@ -29,7 +29,7 @@
 
 .General_content_tab {
     width: 100%;
-    height: 720px;
+    height: auto;
     border: 2px solid #ececec;
     display: none;
 }

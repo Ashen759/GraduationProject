@@ -39,16 +39,19 @@ namespace DelicaciesFood.Controllers
             //显示饮食健康小知识
             List<DietNous> dietNous = db.DietNous.ToList();
             ViewBag.dietnousList = dietNous;
-
-            //显示排行榜
-            var foodrank = db.Database.SqlQuery<Food>("select top 5 * from Food where 1=1 order by ThumbNumber desc");
-            ViewBag.foodsList = foodrank.ToList();
             
             
             return View();
 
         }
-        
+        public ActionResult Detail(int? id)
+        {
+            Food foods = db.Food.Find(id);
+            
+            
+            return View();
+        }
+
     }
         
     }

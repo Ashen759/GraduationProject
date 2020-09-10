@@ -18,5 +18,6 @@ namespace DelicaciesFood.Model
         public string NousTitle { get; set; }
         public string NousPic { get; set; }
         public string NousDetails { get; set; }
+        public Nullable<System.DateTime> NousUpdate { get; set; }
     }
 }

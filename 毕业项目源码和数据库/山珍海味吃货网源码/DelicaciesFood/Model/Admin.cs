@@ -16,6 +16,6 @@ namespace DelicaciesFood.Model
     {
         public int AdminID { get; set; }
         public string AdminName { get; set; }
-        public string AdminrPwd { get; set; }
+        public string AdminPwd { get; set; }
     }
 }

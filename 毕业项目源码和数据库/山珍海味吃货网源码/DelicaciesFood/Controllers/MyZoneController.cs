@@ -124,7 +124,6 @@ namespace DelicaciesFood.Controllers
         }
         public ActionResult Edit(Food foods)
         {
-
             db.Entry(foods).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
             return RedirectToAction("Index");

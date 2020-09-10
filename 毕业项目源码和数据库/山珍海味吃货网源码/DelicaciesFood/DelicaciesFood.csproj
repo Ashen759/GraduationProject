@@ -150,6 +150,7 @@
     <Content Include="images\fancybox_overlay.png" />
     <Content Include="images\fancybox_sprite%402x.png" />
     <Content Include="images\fancybox_sprite.png" />
+    <Content Include="images\food\草莓.jpg" />
     <Content Include="images\fruits\冬枣.jpg" />
     <Content Include="images\fruits\圣女果.jpg" />
     <Content Include="images\fruits\山竹.jpg" />
@@ -194,15 +195,17 @@
     <Content Include="images\team\member-1.jpg" />
     <Content Include="images\team\member-2.jpg" />
     <Content Include="images\team\member-3.jpg" />
-    <Content Include="Model\FoodieWebsiteDB.Context.tt">
+    <Content Include="images\东坡肉.jpg" />
+    <Content Include="images\刀削面.jpg" />
+    <Content Include="Model\FoodieWebsite.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FoodieWebsiteDB.edmx</DependentUpon>
-      <LastGenOutput>FoodieWebsiteDB.Context.cs</LastGenOutput>
+      <DependentUpon>FoodieWebsite.edmx</DependentUpon>
+      <LastGenOutput>FoodieWebsite.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Model\FoodieWebsiteDB.tt">
+    <Content Include="Model\FoodieWebsite.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FoodieWebsiteDB.edmx</DependentUpon>
-      <LastGenOutput>FoodieWebsiteDB.cs</LastGenOutput>
+      <DependentUpon>FoodieWebsite.edmx</DependentUpon>
+      <LastGenOutput>FoodieWebsite.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap-affix.js" />
     <Content Include="Scripts\bootstrap-alert.js" />
@@ -249,12 +252,12 @@
     <Content Include="Zoter\vanillaCalendar.css" />
     <Content Include="Zoter\vanillaCalendar.js" />
     <Content Include="Zoter\waves.js" />
-    <EntityDeploy Include="Model\FoodieWebsiteDB.edmx">
+    <EntityDeploy Include="Model\FoodieWebsite.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FoodieWebsiteDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>FoodieWebsite.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Model\FoodieWebsiteDB.edmx.diagram">
-      <DependentUpon>FoodieWebsiteDB.edmx</DependentUpon>
+    <Content Include="Model\FoodieWebsite.edmx.diagram">
+      <DependentUpon>FoodieWebsite.edmx</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
@@ -294,37 +297,37 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Model\Admin.cs">
-      <DependentUpon>FoodieWebsiteDB.tt</DependentUpon>
+      <DependentUpon>FoodieWebsite.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\DietNous.cs">
-      <DependentUpon>FoodieWebsiteDB.tt</DependentUpon>
+      <DependentUpon>FoodieWebsite.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Food.cs">
-      <DependentUpon>FoodieWebsiteDB.tt</DependentUpon>
+      <DependentUpon>FoodieWebsite.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\FoodieWebsiteDB.Context.cs">
+    <Compile Include="Model\FoodieWebsite.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FoodieWebsiteDB.Context.tt</DependentUpon>
+      <DependentUpon>FoodieWebsite.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\FoodieWebsiteDB.cs">
+    <Compile Include="Model\FoodieWebsite.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FoodieWebsiteDB.tt</DependentUpon>
+      <DependentUpon>FoodieWebsite.tt</DependentUpon>
     </Compile>
-    <Compile Include="Model\FoodieWebsiteDB.Designer.cs">
+    <Compile Include="Model\FoodieWebsite.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FoodieWebsiteDB.edmx</DependentUpon>
+      <DependentUpon>FoodieWebsite.edmx</DependentUpon>
     </Compile>
     <Compile Include="Model\RecipeType.cs">
-      <DependentUpon>FoodieWebsiteDB.tt</DependentUpon>
+      <DependentUpon>FoodieWebsite.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\Sfav.cs">
-      <DependentUpon>FoodieWebsiteDB.tt</DependentUpon>
+      <DependentUpon>FoodieWebsite.tt</DependentUpon>
     </Compile>
     <Compile Include="Model\User.cs">
-      <DependentUpon>FoodieWebsiteDB.tt</DependentUpon>
+      <DependentUpon>FoodieWebsite.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -350,6 +353,8 @@
     <Content Include="Views\Foods\Index.cshtml" />
     <Content Include="Views\Health\Index.cshtml" />
     <Content Include="Views\Health\DietNous.cshtml" />
+    <Content Include="Views\FoodWeb\Index1.cshtml" />
+    <Content Include="Views\Foods\Detail.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -360,7 +365,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Data\" />
-    <Folder Include="images\food\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

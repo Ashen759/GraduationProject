@@ -26,10 +26,8 @@ namespace DelicaciesFood.Model
         public string Mainmaterial { get; set; }
         public string Accessories { get; set; }
         public string FlowChart { get; set; }
-        public Nullable<int> ThumbNumber { get; set; }
         public Nullable<int> Foodissuer { get; set; }
     
-        public virtual RecipeType RecipeType { get; set; }
         public virtual User User { get; set; }
     }
 }

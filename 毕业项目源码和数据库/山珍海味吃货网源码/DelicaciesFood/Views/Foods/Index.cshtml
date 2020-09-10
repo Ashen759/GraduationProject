@@ -36,7 +36,6 @@
                             <ul class="social-icons">
                                 <li><span>欢迎你，@User.Identity.Name</span></li>
                                 <li><a href="/MyZone/Index" title="我的" class="fa fa-user" aria-hidden="true"></a></li>
-                                <li><a href="#" title="消息" class="fa fa-bell-o" aria-hidden="true"></a></li>
                                 <li><a href="/Login/TLogout" title="退出" class="fa fa-power-off" aria-hidden="true"></a></li>
                             </ul>
                         </div> <!-- /.left-header -->
@@ -45,7 +44,7 @@
             </div> <!-- /.container -->
         </div> <!-- /.top-header -->
         @*标签页*@
-        <div style="width:80%;height:500px;margin:0px auto">
+        <div style="width:80%;height:auto;margin:0px auto">
             <div class="allfood">
                 <div class="complete_menu" style="margin-top:30px;background-color:#F7F7F7;box-shadow:5px 5px 5px 10px #EEEEEE">
                     <div style="margin-left:15px">
@@ -73,12 +72,12 @@
                 <div style="margin-top:30px;border:1px solid black" class="row">
                     @foreach (var item in foods)
                     {
-                        <div class="col-lg-3" style="border:1px solid red;width:135px;height:65px">
-                            <dl>
-                                <dt><img height="30" src="~/images/@item.FoodPicture" /></dt>
-                                <dd>@item.FoodName</dd>
-                                <dd>点赞数： @item.ThumbNumber</dd>
-                                <dd>@item.User</dd>
+                        <div class="col-md-2" style="border:1px solid black; margin-left:20px ;margin-top:20px;text-align:center">
+                            <dl style="width: 135px; height: 165px">
+                                <dt><img style="width:133px;height:90px" src="~/images/food/@item.FoodPicture" /></dt>
+                                <dd>
+                                    <a href="/Foods/Detail/@item.FoodID" class="btn btn-primary">@item.FoodName</a>
+                                </dd>
                             </dl>
                         </div>
                     }

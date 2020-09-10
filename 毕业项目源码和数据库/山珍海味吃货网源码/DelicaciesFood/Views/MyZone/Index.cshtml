@@ -57,7 +57,6 @@
                             <ul class="social-icons">
                                 <li><span>欢迎来到 @User.Identity.Name 的空间</span></li>
                                 <li><a href="/MyZone/Index" title="我的" class="fa fa-user" aria-hidden="true"></a></li>
-                                <li><a href="#" title="消息" class="fa fa-bell-o" aria-hidden="true"></a></li>
                                 <li><a href="/Login/TLogout" title="退出" class="fa fa-power-off" aria-hidden="true"></a></li>
                             </ul>
                         </div> <!-- /.left-header -->
@@ -73,7 +72,7 @@
                     <li>发布新品</li>
                 </ul>
             </div><!-- /option_box -->
-            <div id="General_content">
+            <div id="General_content" style="height:650px">
                 @*已发布*@
                 <div style="display:block;" class="General_content_tab">
                     <table class="table table-bordered table-condensed">
@@ -81,7 +80,6 @@
                             <th>编号</th>
                             <th>菜品名称</th>
                             <th>菜品图片</th>
-                            <th>点赞数</th>
                             <th>操作</th>
                         </tr>
                         @foreach (var item in ifoods)
@@ -92,7 +90,6 @@
                                 <td>
                                     <img width="120" height="60" src="~/images/food/@item.FoodPicture" />
                                 </td>
-                                <td>@item.ThumbNumber</td>
                                 <td>
                                     <button class="btn btn-primary " data-toggle="modal" data-target="#Edittt" data-whatever="@item.FoodID">编辑</button>
                                     <a class="btn btn-danger" href="javascript:del(@item.FoodID)">删除</a>
@@ -166,7 +163,7 @@
 
                         </p>
                         <p>
-                            <input class="btn btn-success" type="submit" value="提交" />
+                            <input class="btn btn-success" type="submit" value="发布" />
                             <input class="btn btn-danger" type="button" value="取消" />
                         </p>
                     </form>
@@ -279,6 +276,7 @@
                                     <textarea class="form-control text-box single-line" id="FlowChart" name="FlowChart" value=""></textarea>
                                 </div>
                             </div>
+
 
                         </div>
 
