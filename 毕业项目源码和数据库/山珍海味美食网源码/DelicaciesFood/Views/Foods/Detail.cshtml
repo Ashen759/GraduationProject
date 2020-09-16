@@ -1,0 +1,148 @@
+﻿
+@{
+    Layout = null;
+}
+@using DelicaciesFood.Model;
+@model List<Food>
+@{
+    Food foods = ViewBag.foods;
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>饮食健康小知识</title>
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="templatemo">
+        <meta charset="UTF-8">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>*@
+
+    <!-- CSS Bootstrap & Custom -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/templatemo-misc.css" rel="stylesheet" />
+    <link href="~/Content/templatemo-main.css" rel="stylesheet" />
+    <link href="~/Content/MyZone.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/scripts/bootstrap.js"></script>
+    <!-- Favicons -->
+    <!-- JavaScripts -->
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    @*<script src="~/Scripts/modernizr.js"></script>*@
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>*@
+    <!--[if lt IE 8]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+            <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt="" /></a>
+        </div>
+    <![endif]-->
+</head>
+<body>
+    <div>
+        <div class="top-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div>
+                            <span><a style="font-size:24px;font-weight:bold;color:white" href="/FoodWeb/Index">山珍海味吃货网</a></span>
+                        </div> <!-- /.left-header -->
+                    </div> <!-- /.col-md-6 -->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="right-header text-right">
+                            <ul class="social-icons">
+                                <li><span>欢迎你， @User.Identity.Name </span></li>
+                                <li><a href="/MyZone/Index" title="我的" class="fa fa-user" aria-hidden="true"></a></li>
+                                <li><a href="/Login/TLogout" title="退出" class="fa fa-power-off" aria-hidden="true"></a></li>
+                            </ul>
+                        </div> <!-- /.left-header -->
+                    </div> <!-- /.col-md-6 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.top-header -->
+        @*内容*@
+    <div class="tab_content" style="text-align:center;height:800px">
+
+        <div class="form-horizontal">
+            <form id="form1" class="General_content_form" action="" method="post">
+                <p>
+                    <input type="hidden" name="FoodID" value="@foods.FoodID" />
+                </p>
+                <p>
+                    <img src="~/images/food/@foods.FoodPicture" />
+                </p>
+                <p>
+                    名称：
+                    <span type="text" name="FoodName" value="@foods.FoodName" />
+                </p>
+                <p>
+                    所属类别：
+                    <span name="FoodType">@foods.FoodType</span>
+                </p>
+                <p>
+                    所属类别：
+                    <span name="FoodType">@foods.FoodType</span>
+                </p>
+                <p>
+                    难度系数：
+                    <span name="FoodDifficulty">@foods.FoodDifficulty</span>
+                </p>
+                <p>
+                    所需时间：
+                    <span name="CompletionTime">@foods.CompletionTime</span>（小时）
+                </p>
+                <p>
+                    菜品口味：
+                    <span name="Flavor">@foods.Flavor</span>
+                </p>
+                <p>
+                    主料（用量）：
+                    <span name="Mainmaterial">@foods.Mainmaterial</span>
+                </p>
+                <p>
+                    辅料（用量）：
+                    <span name="Accessories">@foods.Accessories</span>
+                </p>
+                <p>
+                    操作详情：
+                    <span name="FlowChart">@foods.FlowChart</span>
+                </p>
+
+                <p>
+                    <input class="btn btn-danger" type="button" onclick="back();" value="返回" />
+                </p>
+            </form>
+        </div>
+    </div><!-- /General_content -->
+        @*底部*@
+        <div class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <hr />
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <p>Copyright &copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                    </div> <!-- /.col-md-6 -->
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="go-top">
+                            <a href="#" id="go-top">
+                                <i class="fa fa-angle-up"></i>
+                                返回到顶部
+                            </a>
+                        </div>
+                    </div> <!-- /.col-md-6 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.site-footer -->
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    function back() {
+        location.href = "/Foods/Index";
+    }
+</script>
+
+

@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FoodieWebsiteModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdminName" Type="nvarchar" MaxLength="20" />
+    <Property Name="AdminPwd" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="DietNous">
+    <Key>
+      <PropertyRef Name="NousID" />
+    </Key>
+    <Property Name="NousID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NousTitle" Type="nvarchar" MaxLength="100" />
+    <Property Name="NousPic" Type="nvarchar" MaxLength="50" />
+    <Property Name="NousDetails" Type="nvarchar" MaxLength="4000" />
+    <Property Name="NousUpdate" Type="date" />
+  </EntityType>
+  <EntityType Name="Food">
+    <Key>
+      <PropertyRef Name="FoodID" />
+    </Key>
+    <Property Name="FoodID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FoodName" Type="nvarchar" MaxLength="50" />
+    <Property Name="FoodType" Type="int" />
+    <Property Name="FoodPicture" Type="nvarchar" MaxLength="4000" />
+    <Property Name="FoodDifficulty" Type="int" />
+    <Property Name="CompletionTime" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="Flavor" Type="nvarchar" MaxLength="50" />
+    <Property Name="CookingUtensils" Type="nvarchar" MaxLength="50" />
+    <Property Name="CookingStyle" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mainmaterial" Type="nvarchar" MaxLength="200" />
+    <Property Name="Accessories" Type="nvarchar" MaxLength="200" />
+    <Property Name="FlowChart" Type="nvarchar" MaxLength="4000" />
+    <Property Name="Foodissuer" Type="int" />
+  </EntityType>
+  <EntityType Name="RecipeType">
+    <Key>
+      <PropertyRef Name="TypeID" />
+    </Key>
+    <Property Name="TypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TEName" Type="nvarchar" MaxLength="50" />
+    <Property Name="TypeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PID" Type="int" />
+  </EntityType>
+  <EntityType Name="Sfav">
+    <Key>
+      <PropertyRef Name="SfavID" />
+    </Key>
+    <Property Name="SfavID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SfavName" Type="nvarchar" MaxLength="50" />
+    <Property Name="SfavPic" Type="nvarchar" MaxLength="50" />
+    <Property Name="SfavExplain" Type="nvarchar" MaxLength="200" />
+    <Property Name="MatureSeason" Type="int" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="20" />
+    <Property Name="UserPwd" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_Food_RecipeType1">
+    <End Role="User" Type="Self.User" Multiplicity="0..1" />
+    <End Role="Food" Type="Self.Food" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Food">
+        <PropertyRef Name="Foodissuer" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RecipeType_RecipeType">
+    <End Role="RecipeType" Type="Self.RecipeType" Multiplicity="0..1" />
+    <End Role="RecipeType1" Type="Self.RecipeType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RecipeType">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="RecipeType1">
+        <PropertyRef Name="PID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="FoodieWebsiteModelStoreContainer">
+    <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="DietNous" EntityType="Self.DietNous" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Food" EntityType="Self.Food" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RecipeType" EntityType="Self.RecipeType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Sfav" EntityType="Self.Sfav" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Food_RecipeType1" Association="Self.FK_Food_RecipeType1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Food" EntitySet="Food" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RecipeType_RecipeType" Association="Self.FK_RecipeType_RecipeType">
+      <End Role="RecipeType" EntitySet="RecipeType" />
+      <End Role="RecipeType1" EntitySet="RecipeType" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,367 @@
+﻿
+@{
+    Layout = null;
+}
+
+@using DelicaciesFood.Model
+@model List<Food>
+@{
+    List<Food> ifoods = ViewBag.foods;
+    int ranknum = 1;
+
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>会员中心</title>
+    @*<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="templatemo">
+        <meta charset="UTF-8">
+
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>*@
+
+    <!-- CSS Bootstrap & Custom -->
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/templatemo-misc.css" rel="stylesheet" />
+    <link href="~/Content/templatemo-main.css" rel="stylesheet" />
+    <link href="~/Content/MyZone.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/scripts/bootstrap.js"></script>
+    <!-- Favicons -->
+    <!-- JavaScripts -->
+    @*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+    @*<script src="~/Scripts/modernizr.js"></script>*@
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>*@
+    <!--[if lt IE 8]>
+    <div style=' clear: both; text-align:center; position: relative;'>
+            <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://storage.ie6countdown.com/assets/100/images/banners/warning_bar_0000_us.jpg" border="0" alt="" /></a>
+        </div>
+    <![endif]-->
+</head>
+<body>
+    <div>
+        <div class="top-header">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6 col-sm-6">
+                        <div>
+                            <span><a style="font-size:24px;font-weight:bold;color:white" href="/FoodWeb/Index">山珍海味吃货网</a></span>
+                        </div> <!-- /.left-header -->
+                    </div> <!-- /.col-md-6 -->
+                    <div class="col-md-6 col-sm-6">
+                        <div class="right-header text-right">
+                            <ul class="social-icons">
+                                <li><span>欢迎来到 @User.Identity.Name 的空间</span></li>
+                                <li><a href="/MyZone/Index" title="我的" class="fa fa-user" aria-hidden="true"></a></li>
+                                <li><a href="/Login/TLogout" title="退出" class="fa fa-power-off" aria-hidden="true"></a></li>
+                            </ul>
+                        </div> <!-- /.left-header -->
+                    </div> <!-- /.col-md-6 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.top-header -->
+        @*内容*@
+        <div class="tab_content">
+            <div id="option_box">
+                <ul id="General_title">
+                    <li>已发布</li>
+                    <li>发布新品</li>
+                </ul>
+            </div><!-- /option_box -->
+            <div id="General_content" style="height:650px">
+                @*已发布*@
+                <div style="display:block;" class="General_content_tab">
+                    <table class="table table-bordered table-condensed">
+                        <tr>
+                            <th>编号</th>
+                            <th>菜品名称</th>
+                            <th>菜品图片</th>
+                            <th>操作</th>
+                        </tr>
+                        @foreach (var item in ifoods)
+                        {
+                            <tr>
+                                <td>@ranknum</td>
+                                <td>@item.FoodName</td>
+                                <td>
+                                    <img width="120" height="60" src="~/images/food/@item.FoodPicture" />
+                                </td>
+                                <td>
+                                    <button class="btn btn-primary " data-toggle="modal" data-target="#Edittt" data-whatever="@item.FoodID">编辑</button>
+                                    <a class="btn btn-danger" href="javascript:del(@item.FoodID)">删除</a>
+                                </td>
+
+                            </tr>
+                            ranknum++;
+
+
+                        }
+                    </table>
+                </div>
+                @*发布新品*@
+                <div class="General_content_tab" value="000">
+                    <form id="form1" runat="server" class="General_content_form" action="/MyZone/Index" method="post" enctype="multipart/form-data">
+                        <p>
+                            菜品名称：
+                            <input type="text" name="FoodName" />
+                        </p>
+                        <p>
+                            菜品类别:
+                            @Html.DropDownList("FoodType", ViewBag.Typelist as List<SelectListItem>)
+                        </p>
+                        <p>
+                            菜品难度：
+                            @Html.DropDownList("FoodDifficulty", ViewBag.Difficultylist as List<SelectListItem>)
+                        </p>
+                        <p>
+                            花费时间：
+                            <input type="text" name="CompletionTime" />（小时）
+                        </p>
+                        <p>
+                            菜品口味：
+                            @Html.DropDownList("Flavor", ViewBag.Flavorlist as List<SelectListItem>)
+                        </p>
+                        <p>
+                            烹制餐具：
+                            <input type="checkbox" name="CookingUtensils" value="平底锅" />平底锅
+                            <input type="checkbox" name="CookingUtensils" value="压力锅" />压力锅
+                            <input type="checkbox" name="CookingUtensils" value="铁锅" />铁锅
+                            <input type="checkbox" name="CookingUtensils" value="蒸笼" />蒸笼
+                            <input type="checkbox" name="CookingUtensils" value="砂锅" />砂锅
+                            <input type="checkbox" name="CookingUtensils" value="瓦罐" />瓦罐
+                            <input type="checkbox" name="CookingUtensils" value="炖盅" />炖盅
+                        </p>
+                        <p>
+                            烹饪方式：
+                            <input type="checkbox" name="CookingStyle" value="炒" />炒
+                            <input type="checkbox" name="CookingStyle" value="煮" />煮
+                            <input type="checkbox" name="CookingStyle" value="炸" />炸
+                            <input type="checkbox" name="CookingStyle" value="煎" />煎
+                            <input type="checkbox" name="CookingStyle" value="蒸" />蒸
+                            <input type="checkbox" name="CookingStyle" value="炖" />炖
+                            <input type="checkbox" name="CookingStyle" value="烧" />烧
+                            <input type="checkbox" name="CookingStyle" value="焗" />焗
+                        </p>
+                        <p>
+                            主料：
+                            <textarea name="Mainmaterial" class="textarea_1"></textarea>（请在用料后写入用量）
+                        </p>
+                        <p>
+                            辅料：
+                            <textarea name="Accessories" class="textarea_1"></textarea>（请在用料后写入用量）
+                        </p>
+                        <p>
+                            详细步骤：
+                            <textarea name="FlowChart" class="textarea_2"></textarea>
+                        </p>
+                        <p>
+                            <input type="file" id="file" name="file">
+
+                        </p>
+                        <p>
+                            <input class="btn btn-success" type="submit" value="发布" />
+                            <input class="btn btn-danger" type="button" value="取消" />
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div><!-- /General_content -->
+        @*底部*@
+        <div class="site-footer">
+            <div class="container">
+                <div class="row">
+                    <hr />
+                    <div class="col-md-8 col-sm-8 col-xs-12">
+                        <p>Copyright &copy; @DateTime.Now.Year - My ASP.NET Application</p>
+                    </div> <!-- /.col-md-6 -->
+                    <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="go-top">
+                            <a href="#" id="go-top">
+                                <i class="fa fa-angle-up"></i>
+                                返回到顶部
+                            </a>
+                        </div>
+                    </div> <!-- /.col-md-6 -->
+                </div> <!-- /.row -->
+            </div> <!-- /.container -->
+        </div> <!-- /.site-footer -->
+    </div>
+
+
+
+    <!-- 模态框（Modal）  修改 -->
+    <div class="modal fade" id="Edittt" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        &times;
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">
+                        修改餐品信息
+                    </h4>
+                </div>
+                <form action="/MyZone/Edit" method="post" id="EditForm">
+                    <div class="modal-body">
+
+                        <div class="form-horizontal">
+
+                            <input class="form-control text-box single-line" id="FoodID" name="FoodID" type="text" value="" style="display:none" />
+
+                            <input class="form-control text-box single-line" id="Foodissuer" name="Foodissuer" type="text" value="" style="display:none" />
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="FoodName">餐品名字:</label>
+                                <div class="col-md-10">
+                                    <input class="form-control text-box single-line" id="FoodName" name="FoodName" type="text" value="" />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="FoodType">餐品类别:</label>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("FoodType", ViewBag.Typelist as List<SelectListItem>, new { @class = "form-control text-box single-line" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="FoodDifficulty">难度系数:</label>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("FoodDifficulty", ViewBag.Difficultylist as List<SelectListItem>, new { @class = "form-control text-box single-line" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="CompletionTime">花费时间:（小时）</label>
+                                <div class="col-md-10">
+                                    <input class="form-control text-box single-line" id="CompletionTime" name="CompletionTime" type="text" value="" />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Flavor">菜品口味:</label>
+                                <div class="col-md-10">
+                                    @Html.DropDownList("Flavor", ViewBag.Flavorlist as List<SelectListItem>, new { @class = "form-control text-box single-line" })
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Mainmaterial">主料:(用量)</label>
+                                <div class="col-md-10">
+                                    <textarea class="form-control text-box single-line" id="Mainmaterial" name="Mainmaterial" value=""></textarea>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="Accessories">辅料:(用量)</label>
+                                <div class="col-md-10">
+                                    <textarea class="form-control text-box single-line" id="Accessories" name="Accessories" value=""></textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="control-label col-md-2" for="FlowChart">详细步骤:</label>
+                                <div class="col-md-10">
+                                    <textarea class="form-control text-box single-line" id="FlowChart" name="FlowChart" value=""></textarea>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">
+                            关闭
+                        </button>
+                        <button type="submit" class="btn btn-primary" id="Editsubmit">
+                            提交更改
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+</body>
+</html>
+
+<script type="text/javascript">
+    //切换
+    var lis = document.getElementById("General_title").getElementsByTagName("li");
+    var divs = document.getElementById("General_content").getElementsByTagName("div");
+    for (var i = 0; i < lis.length; i++) {
+        lis[i].index = i;
+        lis[i].onclick = function () {
+            for (var j = 0; j < lis.length; j++) {
+                lis[j].className = "";
+            }
+            this.className = "li_click";
+            for (var i = 0; i < divs.length; i++) {
+                divs[i].style.display = "none";
+            }
+            divs[this.index].style.display = "block";
+        }
+    }
+
+
+    $('#Edittt').on('show.bs.modal', function (event) {//监控模式框的状态为显示时触发，event捕获的是触发模式框显示的单击事件对象
+        var button = $(event.relatedTarget)   //捕获单机对象
+        var sID = button.data('whatever')   //获得单机对象标签上传递的参数
+        var model = $(this);
+        $.ajax({
+            type: "post",
+            url: "/MyZone/Dteail",
+            data: { stuID: sID },
+            dataType: "json",
+            success: function (value) {
+                console.log(value);
+                model.find("[name='FoodID']").val(value["FoodID"]);
+                model.find("[name='FoodName']").val(value["FoodName"]);
+                model.find("[name='FoodType']").val(value["FoodType"]);
+                model.find("[name='FoodDifficulty']").val(value["FoodDifficulty"]);
+                model.find("[name='CompletionTime']").val(value["CompletionTime"]);
+                model.find("[name='Flavor']").val(value["Flavor"]);
+                model.find("[name='Mainmaterial']").val(value["Mainmaterial"]);
+                model.find("[name='Accessories']").val(value["Accessories"]);
+                model.find("[name='FlowChart']").val(value["FlowChart"]);
+                model.find("[name='Foodissuer']").val(value["Foodissuer"])
+            }
+        })
+
+    })
+    //修改数据
+    $("#Editsubmit").click(function () {
+        $("#EditForm").submit();
+
+    })
+
+    //删除
+    function del(id) {
+        if (confirm("确定要删除么？")) {
+　　　　　　//这里配置当用户确定删除时，js让页面跳转到的的url地址
+            window.location="/MyZone/Del/" + id;
+        }
+    }
+</script>
+
+
+
+

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c9c3c4fdcd484f08958bbedb9e1b965e" Name="Diagram1">
+        <EntityTypeShape EntityType="FoodieWebsiteModel.Admin" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoodieWebsiteModel.DietNous" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoodieWebsiteModel.Food" Width="1.5" PointX="5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoodieWebsiteModel.RecipeType" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoodieWebsiteModel.Sfav" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="FoodieWebsiteModel.User" Width="1.5" PointX="2.75" PointY="1.875" IsExpanded="true" />
+        <AssociationConnector Association="FoodieWebsiteModel.FK_Food_RecipeType1" ManuallyRouted="false" />
+        <AssociationConnector Association="FoodieWebsiteModel.FK_RecipeType_RecipeType" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
