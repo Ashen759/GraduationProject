@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+@using CodeFirstSystem1.Models;
+@model List<RecipeType>
+
+<h2>新增小类</h2>
+
+<div class="form-horizontal">
+    <form id="form1" class="General_content_form" action="/Typemin/Add" method="post">
+        <p>
+            类别名称：
+            <input type="text" name="TypeName" />
+        </p>
+        <p>
+            英文名称：
+            <input type="text" name="TEName" />
+        </p>
+        <p>
+            所属大类：
+            <select name="PID">
+                @foreach (var item in ViewBag.Tminlist as List<SelectListItem>)
+                {
+                    <option value="@item.Value">@item.Text</option>
+                }
+            </select>
+        </p>
+        <p>
+            <input class="btn btn-success" type="submit" value="提交" />
+            <input class="btn btn-danger" type="button" onclick="back();" value="取消" />
+        </p>
+    </form>
+</div>
+
+<script type="text/javascript">
+    function back() {
+        location.href = "/Typemin/Index";
+    }
+</script>
+

@@ -1,0 +1,33 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+@using CodeFirstSystem1.Models;
+@model List<DietNous>
+
+<a href="/DietNous/Add" class="btn btn-primary">增加</a>
+<table class="table table-bordered">
+    <tr>
+        <td>编号</td>
+        <td>标题</td>
+        <td>图片</td>
+        <td>内容</td>
+        <td>详情</td>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.NousID</td>
+            <td>@item.NousTitle</td>
+            <td><img width="180" height="100" src="~/images/diet/@item.NousPic" /></td>
+            <td style="max-width: 210px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">@item.NousDetails</td>
+            <td>
+                <a href="/DietNous/Detail/@item.NousID" class="btn btn-primary">编辑</a>
+                <a href="/DietNous/Del/@item.NousID" onclick="return confirm('确定删除 @item.NousTitle 吗？')" class="btn btn-primary">删除</a>
+            </td>
+        </tr>
+    }
+
+</table>
+
