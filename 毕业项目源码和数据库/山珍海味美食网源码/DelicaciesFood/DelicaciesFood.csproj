@@ -252,6 +252,8 @@
     <Content Include="Zoter\vanillaCalendar.css" />
     <Content Include="Zoter\vanillaCalendar.js" />
     <Content Include="Zoter\waves.js" />
+    <Content Include="ClassDiagram2.cd" />
+    <Content Include="ClassDiagram3.cd" />
     <EntityDeploy Include="Model\FoodieWebsite.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>FoodieWebsite.Designer.cs</LastGenOutput>
@@ -259,7 +261,7 @@
     <Content Include="Model\FoodieWebsite.edmx.diagram">
       <DependentUpon>FoodieWebsite.edmx</DependentUpon>
     </Content>
-    <Content Include="ClassDiagram2.cd" />
+    <Content Include="ClassDiagram4.cd" />
     <None Include="Properties\PublishProfiles\IISProfile.pubxml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\custom.js" />

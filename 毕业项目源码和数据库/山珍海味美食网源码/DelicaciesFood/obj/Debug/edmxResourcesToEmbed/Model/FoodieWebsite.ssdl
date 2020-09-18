@@ -63,6 +63,18 @@
     <Property Name="UserName" Type="nvarchar" MaxLength="20" />
     <Property Name="UserPwd" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <Association Name="FK_Food_RecipeType">
+    <End Role="RecipeType" Type="Self.RecipeType" Multiplicity="0..1" />
+    <End Role="Food" Type="Self.Food" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RecipeType">
+        <PropertyRef Name="TypeID" />
+      </Principal>
+      <Dependent Role="Food">
+        <PropertyRef Name="FoodType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_Food_RecipeType1">
     <End Role="User" Type="Self.User" Multiplicity="0..1" />
     <End Role="Food" Type="Self.Food" Multiplicity="*" />
@@ -94,6 +106,10 @@
     <EntitySet Name="RecipeType" EntityType="Self.RecipeType" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Sfav" EntityType="Self.Sfav" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Food_RecipeType" Association="Self.FK_Food_RecipeType">
+      <End Role="RecipeType" EntitySet="RecipeType" />
+      <End Role="Food" EntitySet="Food" />
+    </AssociationSet>
     <AssociationSet Name="FK_Food_RecipeType1" Association="Self.FK_Food_RecipeType1">
       <End Role="User" EntitySet="User" />
       <End Role="Food" EntitySet="Food" />

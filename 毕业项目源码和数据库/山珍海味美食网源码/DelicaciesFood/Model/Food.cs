@@ -28,6 +28,7 @@ namespace DelicaciesFood.Model
         public string FlowChart { get; set; }
         public Nullable<int> Foodissuer { get; set; }
     
+        public virtual RecipeType RecipeType { get; set; }
         public virtual User User { get; set; }
     }
 }

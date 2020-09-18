@@ -17,6 +17,7 @@ namespace DelicaciesFood.Model
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RecipeType()
         {
+            this.Food = new HashSet<Food>();
             this.RecipeType1 = new HashSet<RecipeType>();
         }
     
@@ -25,6 +26,8 @@ namespace DelicaciesFood.Model
         public string TypeName { get; set; }
         public Nullable<int> PID { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Food> Food { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<RecipeType> RecipeType1 { get; set; }
         public virtual RecipeType RecipeType2 { get; set; }
